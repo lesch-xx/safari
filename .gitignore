@@ -4,6 +4,7 @@
 /.sass-cache/
 /.jekyll-cache/
 /.jekyll-metadata
+/data/
 /vendor/
 
 # Ignore files
