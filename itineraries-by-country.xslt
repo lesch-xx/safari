@@ -30,7 +30,7 @@
     <xsl:for-each select="//table/tbody[contains(@data-url, '/proposals')]">
       <table class="itineraries">
         <caption>
-          <xsl:value-of select="tr[1]//button[@data-action='click->stream-toggler#toggle']/@title" />
+          <xsl:value-of select="normalize-space(tr[1]//button[@data-action='click->stream-toggler#toggle']/@title)" />
         </caption>
         <tbody>
           <xsl:call-template name="itineraryRow" />
@@ -79,10 +79,21 @@
   </xsl:template>
 
   <xsl:template name="linkCell">
+    <!-- TODO: missing & < -->
+    <!-- NB: $symbolsToReplace and $replaceWithSymbols variable length must match because XPath translate replaces characters at the same index. -->
+    <xsl:variable name="symbolsToReplace">~!?@#$%^*_|>–+=()[]{}'`‘"«»:;,.\→</xsl:variable>
+    <xsl:variable name="replaceWithSymbols">                                              </xsl:variable>
     <td class="link">
       <xsl:element name="a">
         <xsl:attribute name="alt">Link icon</xsl:attribute>
-        <xsl:attribute name="href">https://itineraries.htconcierge.co.uk/<xsl:value-of select="normalize-space(td[1]//p/text())" disable-output-escaping="no" />/<xsl:value-of select="@id" disable-output-escaping="no" /></xsl:attribute>
+        <xsl:attribute
+          name="href">https://itineraries.htconcierge.co.uk/<xsl:value-of
+          select="translate(normalize-space(translate(translate(td[1]//p/text(), '-/’', '   '), $symbolsToReplace, $replaceWithSymbols)), ' ', '-')"
+          disable-output-escaping="no" />/<xsl:value-of
+          select="substring-after(@id, '_')"
+          disable-output-escaping="no"
+        /></xsl:attribute>
+        <xsl:attribute name="target">_blank</xsl:attribute>
         <xsl:element name="img">
           <xsl:attribute name="src">../images/icon-link.svg</xsl:attribute>
         </xsl:element>
