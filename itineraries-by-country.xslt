@@ -5,7 +5,7 @@
   <xsl:template match="/">
     <html>
       <head>
-        <link rel="stylesheet" href="./styles.css" />
+        <link rel="stylesheet" href="../styles.css" />
         <title>Safari Itineraries by country</title>
       </head>
       <body>
@@ -42,7 +42,7 @@
                       <xsl:attribute name="alt">Link icon</xsl:attribute>
                       <xsl:attribute name="href">https://itineraries.htconcierge.co.uk/<xsl:value-of select="td[1]//p/text()" />/<xsl:value-of select="@id" /></xsl:attribute>
                       <xsl:element name="img">
-                        <xsl:attribute name="src">./images/icon-link.svg</xsl:attribute>
+                        <xsl:attribute name="src">../images/icon-link.svg</xsl:attribute>
                       </xsl:element>
                       Link
                     </xsl:element>
