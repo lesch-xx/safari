@@ -12,7 +12,7 @@ $x('//table/tbody//button[@data-action="click->stream-toggler#toggle"]').forEach
 
 ### How to transform saved page
 1. Open Terminal
-2. 
+2.
 ```bash
-$ xsltproc --html --huge --output itineraries-by-country.html itineraries-by-country.xslt Dashboard-Planning.html
+$ xsltproc --html --huge --output output/itineraries-by-country.html itineraries-by-country.xslt data/Dashboard-Planning.html
 ```

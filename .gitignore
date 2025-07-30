@@ -5,6 +5,7 @@
 /.jekyll-cache/
 /.jekyll-metadata
 /data/
+/output/
 /vendor/
 
 # Ignore files
