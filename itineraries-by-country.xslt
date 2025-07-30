@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <xsl:output method="html" doctype-system="about:legacy-compat" encoding="utf-8" indent="yes" />
+  <xsl:strip-space elements="*" />
 
   <xsl:template match="/">
     <html>
@@ -32,42 +33,62 @@
           <xsl:value-of select="tr[1]//button[@data-action='click->stream-toggler#toggle']/@title" />
         </caption>
         <tbody>
-          <xsl:for-each select="tr[2]//table/tbody/tr">
-            <tr>
-              <td class="modify-date">
-                <xsl:value-of select="td[2]/text()" />
-              </td>
-              <td class="name">
-                <xsl:element name="div">
-                  <xsl:attribute name="title">
-                      <xsl:value-of select="td[1]//p/text()" />
-                  </xsl:attribute>
-                  <xsl:value-of select="td[1]//p/text()" />
-                </xsl:element>
-              </td>
-              <td class="notes">
-                <xsl:element name="div">
-                  <xsl:attribute name="title">
-                      <xsl:value-of select="td[3]//p/text()" />
-                  </xsl:attribute>
-                  <xsl:value-of select="td[3]//p/text()" />
-                </xsl:element>
-              </td>
-              <td class="link">
-                <xsl:element name="a">
-                  <xsl:attribute name="alt">Link icon</xsl:attribute>
-                  <xsl:attribute name="href">https://itineraries.htconcierge.co.uk/<xsl:value-of select="td[1]//p/text()" />/<xsl:value-of select="@id" /></xsl:attribute>
-                  <xsl:element name="img">
-                    <xsl:attribute name="src">../images/icon-link.svg</xsl:attribute>
-                  </xsl:element>
-                  Link
-                </xsl:element>
-              </td>
-            </tr>
-          </xsl:for-each>
+          <xsl:call-template name="itineraryRow" />
         </tbody>
       </table>
     </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template name="itineraryRow">
+    <xsl:for-each select="tr[2]//table/tbody/tr">
+      <tr>
+        <xsl:call-template name="modifyDateCell" />
+        <xsl:call-template name="nameCell" />
+        <xsl:call-template name="notesCell" />
+        <xsl:call-template name="linkCell" />
+      </tr>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template name="modifyDateCell">
+    <td class="modify-date">
+      <xsl:value-of select="normalize-space(td[2]/text())" />
+    </td>
+  </xsl:template>
+
+  <xsl:template name="nameCell">
+    <td class="name">
+      <xsl:element name="div">
+        <xsl:attribute name="title">
+            <xsl:value-of select="normalize-space(td[1]//p/text())" />
+        </xsl:attribute>
+        <xsl:value-of select="normalize-space(td[1]//p/text())" />
+      </xsl:element>
+    </td>
+  </xsl:template>
+
+  <xsl:template name="notesCell">
+    <td class="notes">
+      <xsl:element name="div">
+        <xsl:attribute name="title">
+            <xsl:value-of select="normalize-space(td[3]//p/text())" />
+        </xsl:attribute>
+        <xsl:value-of select="normalize-space(td[3]//p/text())" />
+      </xsl:element>
+    </td>
+  </xsl:template>
+
+  <xsl:template name="linkCell">
+    <td class="link">
+      <xsl:element name="a">
+        <xsl:attribute name="alt">Link icon</xsl:attribute>
+        <xsl:attribute name="href">https://itineraries.htconcierge.co.uk/<xsl:value-of select="normalize-space(td[1]//p/text())" disable-output-escaping="no" />/<xsl:value-of select="@id" disable-output-escaping="no" /></xsl:attribute>
+        <xsl:element name="img">
+          <xsl:attribute name="src">../images/icon-link.svg</xsl:attribute>
+        </xsl:element>
+        <span>Link</span>
+      </xsl:element>
+    </td>
   </xsl:template>
 
 </xsl:stylesheet>
