@@ -21,6 +21,10 @@ h2 {
   text-align: left;
 }
 
+.itineraries tr:nth-child(even) {
+  background-color: rgb(245, 245, 245);
+}
+
 .itineraries td {
   padding: 2pt;
   vertical-align: top;
@@ -48,11 +52,11 @@ h2 {
 .modify-date {
   color: lightgray;
   text-align: right;
-  width: 10%; /* Fits 'September 88, 8888' */
+  width: 9%; /* 9% fits 'September 88, 8888' */
 }
 
 .name {
-  width: 50%;
+  width: 37%;
 }
 
 .itineraries td.name div::after {
@@ -67,7 +71,7 @@ h2 {
   font-size: 9pt;
   height: 18px;
   padding: 0;
-  width: 5%; /* Fits 'Link' */
+  width: 4%; /* 4% fits 'Link' with icon */
 }
 
 .link a {
@@ -81,5 +85,6 @@ h2 {
 }
 
 .link a img {
+  margin-right: 1pt;
   vertical-align: middle;
 }
