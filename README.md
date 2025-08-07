@@ -1,18 +1,31 @@
 # Transform Safari portal dashboard
 
 ### How to expand all itineraries
-1. Open Web Developer Tools in Firefox
-2.
+1. Go to Safari Dashboard
+2. Open Web Developer Tools in Firefox (Inspect)
+3. Switch to Console tab
+4. Execute the following command at the bottom input marked with >>
 ```
 $x('//table/tbody//button[@data-action="click->stream-toggler#toggle"]').forEach((button) => button.click());
 ```
+5. All country groups should be open after some time
+6. Close Web Developer Tools
+7. Save the page. See instructions below
 
 ### How to save web page
-1.
+1. Click right button to open context menu
+2. Select SingleFile - Save Page with SingleFile
+3. Save page to project `data` folder as `Dashboard-Planning.html`
+4. Open terminal to process saved page. See instructions below
 
 ### How to transform saved page
-1. Open Terminal
-2.
-```bash
-$ xsltproc --html --huge --output output/itineraries-by-country.html itineraries-by-country.xslt data/Dashboard-Planning.html
+1. Open Terminal in project folder
 ```
+cd /Users/<username>/Projects/safari
+```
+2. Execute the following command to transform saved page
+```bash
+xsltproc --html --huge --output output/itineraries-by-country.html itineraries-by-country.xslt data/Dashboard-Planning.html
+```
+3. Check transformation result in `output` folder
+4. Close Terminal
