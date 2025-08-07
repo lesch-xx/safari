@@ -41,12 +41,14 @@
 
   <xsl:template name="itineraryRow">
     <xsl:for-each select="tr[2]//table/tbody/tr">
-      <tr>
-        <xsl:call-template name="modifyDateCell" />
-        <xsl:call-template name="nameCell" />
-        <xsl:call-template name="notesCell" />
-        <xsl:call-template name="linkCell" />
-      </tr>
+      <xsl:if test="contains(td[3]//p/text(), '[Generic]')">
+        <tr>
+          <xsl:call-template name="modifyDateCell" />
+          <xsl:call-template name="nameCell" />
+          <xsl:call-template name="notesCell" />
+          <xsl:call-template name="linkCell" />
+        </tr>
+      </xsl:if>
     </xsl:for-each>
   </xsl:template>
 
