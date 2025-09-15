@@ -43,12 +43,15 @@
       <xsl:if test="contains(td[3]//p/text(), '[Generic]')">
         <tr>
           <xsl:call-template name="dateCell">
+            <xsl:with-param name="cssClass">modify-date</xsl:with-param>
             <xsl:with-param name="text" select="normalize-space(td[2]/text())" />
           </xsl:call-template>
           <xsl:call-template name="nameCell">
+            <xsl:with-param name="cssClass">name</xsl:with-param>
             <xsl:with-param name="text" select="normalize-space(td[1]//p/text())" />
           </xsl:call-template>
           <xsl:call-template name="notesCell">
+            <xsl:with-param name="cssClass">notes</xsl:with-param>
             <xsl:with-param name="text" select="normalize-space(td[3]//p/text())" />
           </xsl:call-template>
           <xsl:call-template name="linkCell">
@@ -59,9 +62,12 @@
   </xsl:template>
 
   <xsl:template name="dateCell">
+    <xsl:param name="cssClass" />
     <xsl:param name="text" />
     <xsl:element name="td">
-      <xsl:attribute name="class">modify-date</xsl:attribute>
+      <xsl:attribute name="class">
+        <xsl:value-of select="$cssClass" />
+      </xsl:attribute>
       <xsl:element name="span">
         <xsl:attribute name="title">
             <xsl:value-of select="$text" />
@@ -72,9 +78,12 @@
   </xsl:template>
 
   <xsl:template name="nameCell">
+    <xsl:param name="cssClass" />
     <xsl:param name="text" />
     <xsl:element name="td">
-      <xsl:attribute name="class">name</xsl:attribute>
+      <xsl:attribute name="class">
+        <xsl:value-of select="$cssClass" />
+      </xsl:attribute>
       <xsl:element name="span">
         <xsl:attribute name="title">
             <xsl:value-of select="$text" />
@@ -85,9 +94,12 @@
   </xsl:template>
 
   <xsl:template name="notesCell">
+    <xsl:param name="cssClass" />
     <xsl:param name="text" />
     <xsl:element name="td">
-      <xsl:attribute name="class">notes</xsl:attribute>
+      <xsl:attribute name="class">
+        <xsl:value-of select="$cssClass" />
+      </xsl:attribute>
       <xsl:element name="span">
         <xsl:attribute name="title">
             <xsl:value-of select="$text" />
