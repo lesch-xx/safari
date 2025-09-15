@@ -25,7 +25,7 @@ h2 {
   background-color: rgb(245, 245, 245);
 }
 
-.itineraries td {
+.itineraries td:not(.link) {
   --cell-padding: 3pt;
 
   padding: var(--cell-padding);
@@ -63,7 +63,7 @@ h2 {
 
 .itineraries .link {
   font-size: 9pt;
-  padding: 0;
+  padding: 0 3pt 0 0;
   width: 4%; /* 4% fits 'Link' with icon */
 }
 
@@ -71,6 +71,7 @@ h2 {
   color: black;
   display: block;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .link a:hover {
