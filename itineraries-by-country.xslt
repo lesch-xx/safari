@@ -42,7 +42,7 @@
     <xsl:for-each select="tr[2]//table/tbody/tr">
       <xsl:if test="contains(td[3]//p/text(), '[Generic]')">
         <tr>
-          <xsl:call-template name="modifyDateCell" />
+          <xsl:call-template name="dateCell" />
           <xsl:call-template name="nameCell" />
           <xsl:call-template name="notesCell" />
           <xsl:call-template name="linkCell" />
@@ -51,35 +51,38 @@
     </xsl:for-each>
   </xsl:template>
 
-  <xsl:template name="modifyDateCell">
+  <xsl:template name="dateCell">
+    <xsl:variable name="dateText" select="normalize-space(td[2]/text())" />
     <td class="modify-date">
       <xsl:element name="span">
         <xsl:attribute name="title">
-            <xsl:value-of select="normalize-space(td[2]/text())" />
+            <xsl:value-of select="$dateText" />
         </xsl:attribute>
-        <xsl:value-of select="normalize-space(td[2]/text())" />
+        <xsl:value-of select="$dateText" />
       </xsl:element>
     </td>
   </xsl:template>
 
   <xsl:template name="nameCell">
+    <xsl:variable name="nameText" select="normalize-space(td[1]//p/text())" />
     <td class="name">
       <xsl:element name="span">
         <xsl:attribute name="title">
-            <xsl:value-of select="normalize-space(td[1]//p/text())" />
+            <xsl:value-of select="$nameText" />
         </xsl:attribute>
-        <xsl:value-of select="normalize-space(td[1]//p/text())" />
+        <xsl:value-of select="$nameText" />
       </xsl:element>
     </td>
   </xsl:template>
 
   <xsl:template name="notesCell">
+    <xsl:variable name="notesText" select="normalize-space(td[3]//p/text())" />
     <td class="notes">
       <xsl:element name="span">
         <xsl:attribute name="title">
-            <xsl:value-of select="normalize-space(td[3]//p/text())" />
+            <xsl:value-of select="$notesText" />
         </xsl:attribute>
-        <xsl:value-of select="normalize-space(td[3]//p/text())" />
+        <xsl:value-of select="$notesText" />
       </xsl:element>
     </td>
   </xsl:template>
