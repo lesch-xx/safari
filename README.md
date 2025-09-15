@@ -29,6 +29,9 @@ xsltproc --html --huge --output docs/index.html itineraries-by-country.xslt data
 ```
 3. Check transformation result in `docs` folder. DO NOT change `docs` folder name or location due to [GitHub Pages](https://docs.github.com/pages) limitation.
 4. Close Terminal
+> [INFO]
+> XPath functions reference available [here](https://developer.mozilla.org/en-US/docs/Web/XML/XPath/Reference/Functions).
+> XSLT elements reference available [here](https://developer.mozilla.org/en-US/docs/Web/XML/XSLT/Reference/Element).
 
 ### How to update public page
 1. TODO
