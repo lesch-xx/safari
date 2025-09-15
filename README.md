@@ -29,3 +29,6 @@ xsltproc --html --huge --output output/itineraries-by-country.html itineraries-b
 ```
 3. Check transformation result in `output` folder
 4. Close Terminal
+
+### How to update public page
+1. TODO
