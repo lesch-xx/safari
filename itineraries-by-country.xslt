@@ -16,21 +16,14 @@
     </html>
   </xsl:template>
 
-  <xsl:template match="head">
-    <!-- Ignore input HEAD -->
-  </xsl:template>
-
   <xsl:template match="body">
     <xsl:apply-templates />
   </xsl:template>
 
-  <xsl:template match="nav">
-    <!-- Ignore input NAV -->
-  </xsl:template>
-
-  <xsl:template match="div[starts-with(@*,'cky-')]">
-    <!-- Ignore input Cookie Banner -->
-  </xsl:template>
+  <!-- DO NOT process the following nodes: HEAD, NAV, Cookie Banner, etc. -->
+  <xsl:template match="head" />
+  <xsl:template match="nav" />
+  <xsl:template match="div[starts-with(@*,'cky-')]" />
 
   <xsl:template match="main/turbo-frame[@id='dashboard']">
     <xsl:for-each select="//table/tbody[contains(@data-url, '/proposals')]">
@@ -92,7 +85,7 @@
   </xsl:template>
 
   <xsl:template name="linkCell">
-    <!-- TODO: missing & < -->
+    <!-- TODO: missing '&' and '<' chars -->
     <!-- NB: $symbolsToReplace and $replaceWithSymbols variable length must match because XPath translate replaces characters at the same index. -->
     <xsl:variable name="symbolsToReplace">~!?@#$%^*_|>–+=()[]{}'`‘"«»:;,.\→</xsl:variable>
     <xsl:variable name="replaceWithSymbols">                                              </xsl:variable>
