@@ -17,6 +17,7 @@
   </xsl:template>
 
   <xsl:template match="head">
+    <!-- Ignore input HEAD -->
   </xsl:template>
 
   <xsl:template match="body">
@@ -24,6 +25,11 @@
   </xsl:template>
 
   <xsl:template match="nav">
+    <!-- Ignore input NAV -->
+  </xsl:template>
+
+  <xsl:template match="div[starts-with(@*,'cky-')]">
+    <!-- Ignore input Cookie Banner -->
   </xsl:template>
 
   <xsl:template match="main/turbo-frame[@id='dashboard']">
