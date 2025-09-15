@@ -42,17 +42,24 @@
     <xsl:for-each select="tr[2]//table/tbody/tr">
       <xsl:if test="contains(td[3]//p/text(), '[Generic]')">
         <tr>
-          <xsl:call-template name="dateCell" />
-          <xsl:call-template name="nameCell" />
-          <xsl:call-template name="notesCell" />
-          <xsl:call-template name="linkCell" />
+          <xsl:call-template name="dateCell">
+            <xsl:with-param name="dateText" select="normalize-space(td[2]/text())" />
+          </xsl:call-template>
+          <xsl:call-template name="nameCell">
+            <xsl:with-param name="nameText" select="normalize-space(td[1]//p/text())" />
+          </xsl:call-template>
+          <xsl:call-template name="notesCell">
+            <xsl:with-param name="notesText" select="normalize-space(td[3]//p/text())" />
+          </xsl:call-template>
+          <xsl:call-template name="linkCell">
+          </xsl:call-template>
         </tr>
       </xsl:if>
     </xsl:for-each>
   </xsl:template>
 
   <xsl:template name="dateCell">
-    <xsl:variable name="dateText" select="normalize-space(td[2]/text())" />
+    <xsl:param name="dateText" />
     <td class="modify-date">
       <xsl:element name="span">
         <xsl:attribute name="title">
@@ -64,7 +71,7 @@
   </xsl:template>
 
   <xsl:template name="nameCell">
-    <xsl:variable name="nameText" select="normalize-space(td[1]//p/text())" />
+    <xsl:param name="nameText" />
     <td class="name">
       <xsl:element name="span">
         <xsl:attribute name="title">
@@ -76,7 +83,7 @@
   </xsl:template>
 
   <xsl:template name="notesCell">
-    <xsl:variable name="notesText" select="normalize-space(td[3]//p/text())" />
+    <xsl:param name="notesText" />
     <td class="notes">
       <xsl:element name="span">
         <xsl:attribute name="title">
