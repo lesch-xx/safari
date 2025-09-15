@@ -16,21 +16,14 @@
     </html>
   </xsl:template>
 
-  <xsl:template match="head">
-    <!-- Ignore input HEAD -->
-  </xsl:template>
-
   <xsl:template match="body">
     <xsl:apply-templates />
   </xsl:template>
 
-  <xsl:template match="nav">
-    <!-- Ignore input NAV -->
-  </xsl:template>
-
-  <xsl:template match="div[starts-with(@*,'cky-')]">
-    <!-- Ignore input Cookie Banner -->
-  </xsl:template>
+  <!-- DO NOT process the following nodes: HEAD, NAV, Cookie Banner, etc. -->
+  <xsl:template match="head" />
+  <xsl:template match="nav" />
+  <xsl:template match="div[starts-with(@*,'cky-')]" />
 
   <xsl:template match="main/turbo-frame[@id='dashboard']">
     <xsl:for-each select="//table/tbody[contains(@data-url, '/proposals')]">
@@ -47,52 +40,48 @@
 
   <xsl:template name="itineraryRow">
     <xsl:for-each select="tr[2]//table/tbody/tr">
-      <xsl:if test="contains(td[3]//p/text(), '[Generic]')">
+      <xsl:variable name="notesText" select="normalize-space(td[3]//p/text())" />
+      <xsl:if test="contains($notesText, '[Generic]')">
         <tr>
-          <xsl:call-template name="modifyDateCell" />
-          <xsl:call-template name="nameCell" />
-          <xsl:call-template name="notesCell" />
-          <xsl:call-template name="linkCell" />
+          <xsl:call-template name="textCell">
+            <xsl:with-param name="cssClass">modify-date</xsl:with-param>
+            <xsl:with-param name="text" select="normalize-space(td[2]/text())" />
+          </xsl:call-template>
+          <xsl:call-template name="textCell">
+            <xsl:with-param name="cssClass">name</xsl:with-param>
+            <xsl:with-param name="text" select="normalize-space(td[1]//p/text())" />
+          </xsl:call-template>
+          <xsl:call-template name="textCell">
+            <xsl:with-param name="cssClass">notes</xsl:with-param>
+            <xsl:with-param name="text" select="$notesText" />
+          </xsl:call-template>
+          <xsl:call-template name="linkCell">
+            <xsl:with-param name="notesText" select="$notesText" />
+          </xsl:call-template>
         </tr>
       </xsl:if>
     </xsl:for-each>
   </xsl:template>
 
-  <xsl:template name="modifyDateCell">
-    <td class="modify-date">
+  <xsl:template name="textCell">
+    <xsl:param name="cssClass" />
+    <xsl:param name="text" />
+    <xsl:element name="td">
+      <xsl:attribute name="class">
+        <xsl:value-of select="$cssClass" />
+      </xsl:attribute>
       <xsl:element name="span">
         <xsl:attribute name="title">
-            <xsl:value-of select="normalize-space(td[2]/text())" />
+            <xsl:value-of select="$text" />
         </xsl:attribute>
-        <xsl:value-of select="normalize-space(td[2]/text())" />
+        <xsl:value-of select="$text" />
       </xsl:element>
-    </td>
-  </xsl:template>
-
-  <xsl:template name="nameCell">
-    <td class="name">
-      <xsl:element name="span">
-        <xsl:attribute name="title">
-            <xsl:value-of select="normalize-space(td[1]//p/text())" />
-        </xsl:attribute>
-        <xsl:value-of select="normalize-space(td[1]//p/text())" />
-      </xsl:element>
-    </td>
-  </xsl:template>
-
-  <xsl:template name="notesCell">
-    <td class="notes">
-      <xsl:element name="span">
-        <xsl:attribute name="title">
-            <xsl:value-of select="normalize-space(td[3]//p/text())" />
-        </xsl:attribute>
-        <xsl:value-of select="normalize-space(td[3]//p/text())" />
-      </xsl:element>
-    </td>
+    </xsl:element>
   </xsl:template>
 
   <xsl:template name="linkCell">
-    <!-- TODO: missing & < -->
+    <xsl:param name="notesText" />
+    <!-- TODO: missing '&' and '<' chars -->
     <!-- NB: $symbolsToReplace and $replaceWithSymbols variable length must match because XPath translate replaces characters at the same index. -->
     <xsl:variable name="symbolsToReplace">~!?@#$%^*_|>–+=()[]{}'`‘"«»:;,.\→</xsl:variable>
     <xsl:variable name="replaceWithSymbols">                                              </xsl:variable>
@@ -105,7 +94,7 @@
           disable-output-escaping="no" />/<xsl:value-of
           select="substring-after(@id, '_')"
           disable-output-escaping="no"
-        /><xsl:if test="contains(td[3]//p/text(), '[Lookbook]')">?type=lookbook</xsl:if></xsl:attribute>
+        /><xsl:if test="contains($notesText, '[Lookbook]')">?type=lookbook</xsl:if></xsl:attribute>
         <xsl:attribute name="target">_blank</xsl:attribute>
         <xsl:element name="img">
           <xsl:attribute name="src">./images/icon-link.svg</xsl:attribute>
