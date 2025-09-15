@@ -105,7 +105,7 @@
           disable-output-escaping="no" />/<xsl:value-of
           select="substring-after(@id, '_')"
           disable-output-escaping="no"
-        /></xsl:attribute>
+        /><xsl:if test="contains(td[3]//p/text(), '[Lookbook]')">?type=lookbook</xsl:if></xsl:attribute>
         <xsl:attribute name="target">_blank</xsl:attribute>
         <xsl:element name="img">
           <xsl:attribute name="src">./images/icon-link.svg</xsl:attribute>
