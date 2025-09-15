@@ -43,13 +43,13 @@
       <xsl:if test="contains(td[3]//p/text(), '[Generic]')">
         <tr>
           <xsl:call-template name="dateCell">
-            <xsl:with-param name="dateText" select="normalize-space(td[2]/text())" />
+            <xsl:with-param name="text" select="normalize-space(td[2]/text())" />
           </xsl:call-template>
           <xsl:call-template name="nameCell">
-            <xsl:with-param name="nameText" select="normalize-space(td[1]//p/text())" />
+            <xsl:with-param name="text" select="normalize-space(td[1]//p/text())" />
           </xsl:call-template>
           <xsl:call-template name="notesCell">
-            <xsl:with-param name="notesText" select="normalize-space(td[3]//p/text())" />
+            <xsl:with-param name="text" select="normalize-space(td[3]//p/text())" />
           </xsl:call-template>
           <xsl:call-template name="linkCell">
           </xsl:call-template>
@@ -59,39 +59,42 @@
   </xsl:template>
 
   <xsl:template name="dateCell">
-    <xsl:param name="dateText" />
-    <td class="modify-date">
+    <xsl:param name="text" />
+    <xsl:element name="td">
+      <xsl:attribute name="class">modify-date</xsl:attribute>
       <xsl:element name="span">
         <xsl:attribute name="title">
-            <xsl:value-of select="$dateText" />
+            <xsl:value-of select="$text" />
         </xsl:attribute>
-        <xsl:value-of select="$dateText" />
+        <xsl:value-of select="$text" />
       </xsl:element>
-    </td>
+    </xsl:element>
   </xsl:template>
 
   <xsl:template name="nameCell">
-    <xsl:param name="nameText" />
-    <td class="name">
+    <xsl:param name="text" />
+    <xsl:element name="td">
+      <xsl:attribute name="class">name</xsl:attribute>
       <xsl:element name="span">
         <xsl:attribute name="title">
-            <xsl:value-of select="$nameText" />
+            <xsl:value-of select="$text" />
         </xsl:attribute>
-        <xsl:value-of select="$nameText" />
+        <xsl:value-of select="$text" />
       </xsl:element>
-    </td>
+    </xsl:element>
   </xsl:template>
 
   <xsl:template name="notesCell">
-    <xsl:param name="notesText" />
-    <td class="notes">
+    <xsl:param name="text" />
+    <xsl:element name="td">
+      <xsl:attribute name="class">notes</xsl:attribute>
       <xsl:element name="span">
         <xsl:attribute name="title">
-            <xsl:value-of select="$notesText" />
+            <xsl:value-of select="$text" />
         </xsl:attribute>
-        <xsl:value-of select="$notesText" />
+        <xsl:value-of select="$text" />
       </xsl:element>
-    </td>
+    </xsl:element>
   </xsl:template>
 
   <xsl:template name="linkCell">
