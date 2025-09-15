@@ -60,13 +60,18 @@
 
   <xsl:template name="modifyDateCell">
     <td class="modify-date">
-      <xsl:value-of select="normalize-space(td[2]/text())" />
+      <xsl:element name="span">
+        <xsl:attribute name="title">
+            <xsl:value-of select="normalize-space(td[2]/text())" />
+        </xsl:attribute>
+        <xsl:value-of select="normalize-space(td[2]/text())" />
+      </xsl:element>
     </td>
   </xsl:template>
 
   <xsl:template name="nameCell">
     <td class="name">
-      <xsl:element name="div">
+      <xsl:element name="span">
         <xsl:attribute name="title">
             <xsl:value-of select="normalize-space(td[1]//p/text())" />
         </xsl:attribute>
@@ -77,7 +82,7 @@
 
   <xsl:template name="notesCell">
     <td class="notes">
-      <xsl:element name="div">
+      <xsl:element name="span">
         <xsl:attribute name="title">
             <xsl:value-of select="normalize-space(td[3]//p/text())" />
         </xsl:attribute>

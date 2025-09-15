@@ -26,25 +26,22 @@ h2 {
 }
 
 .itineraries td {
-  padding: 2pt;
-  vertical-align: top;
-}
+  --cell-padding: 3pt;
 
-.itineraries td div {
-  color: transparent;
-  max-height: 1.1em;
-  overflow: hidden;
+  padding: var(--cell-padding);
   position: relative;
 }
 
-.itineraries td div::after {
-  color: yellow;
-  content: attr(title);
-  left: 0;
+.itineraries td:not(.link)::before {
+  content: '&nbsp;';
+  visibility: hidden;
+}
+
+.itineraries td>span {
+  left: var(--cell-padding);
   overflow: hidden;
   position: absolute;
-  right: 0;
-  top: 0;
+  right: var(--cell-padding);
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -52,24 +49,20 @@ h2 {
 .modify-date {
   color: lightgray;
   text-align: right;
-  width: 9%; /* 9% fits 'September 88, 8888' */
+  width: 10%; /* 10% fits 'September 88, 8888' */
 }
 
 .name {
+  color: black;
   width: 30%;
 }
 
-.itineraries td.name div::after {
-  color: black;
-}
-
-.itineraries td.notes div::after {
+.notes {
   color: gray;
 }
 
-.link {
+.itineraries .link {
   font-size: 9pt;
-  height: 18px;
   padding: 0;
   width: 4%; /* 4% fits 'Link' with icon */
 }
@@ -85,6 +78,6 @@ h2 {
 }
 
 .link a img {
-  margin-right: 1pt;
+  margin-right: 2pt;
   vertical-align: middle;
 }
