@@ -25,7 +25,7 @@ cd /Users/<username>/Projects/safari
 ```
 2. Execute the following command to transform saved page
 ```bash
-xsltproc --html --huge --output docs/itineraries-by-country.html itineraries-by-country.xslt data/Dashboard-Planning.html
+xsltproc --html --huge --output docs/index.html itineraries-by-country.xslt data/Dashboard-Planning.html
 ```
 3. Check transformation result in `docs` folder. DO NOT change `docs` folder name or location due to [GitHub Pages](https://docs.github.com/pages) limitation.
 4. Close Terminal
