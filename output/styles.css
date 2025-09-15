@@ -1,0 +1,90 @@
+body {
+  font-family: "Arial";
+  margin: 10pt;
+}
+
+h2 {
+  color: blue;
+}
+
+.itineraries {
+  border: 1px solid silver;
+  border-collapse: collapse;
+  font-size: 10pt;
+  width: 100%;
+}
+
+.itineraries caption {
+  font-size: 11pt;
+  font-weight: bold;
+  margin: 10pt 0 2pt;
+  text-align: left;
+}
+
+.itineraries tr:nth-child(even) {
+  background-color: rgb(245, 245, 245);
+}
+
+.itineraries td {
+  padding: 2pt;
+  vertical-align: top;
+}
+
+.itineraries td div {
+  color: transparent;
+  max-height: 1.1em;
+  overflow: hidden;
+  position: relative;
+}
+
+.itineraries td div::after {
+  color: yellow;
+  content: attr(title);
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.modify-date {
+  color: lightgray;
+  text-align: right;
+  width: 9%; /* 9% fits 'September 88, 8888' */
+}
+
+.name {
+  width: 30%;
+}
+
+.itineraries td.name div::after {
+  color: black;
+}
+
+.itineraries td.notes div::after {
+  color: gray;
+}
+
+.link {
+  font-size: 9pt;
+  height: 18px;
+  padding: 0;
+  width: 4%; /* 4% fits 'Link' with icon */
+}
+
+.link a {
+  color: black;
+  display: block;
+  text-decoration: none;
+}
+
+.link a:hover {
+  text-decoration: underline;
+}
+
+.link a img {
+  margin-right: 1pt;
+  vertical-align: middle;
+}
