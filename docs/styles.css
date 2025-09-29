@@ -1,7 +1,9 @@
 body {
+  --color-lightblue: #e6f7fa;
   --color-blue: #004069;
+  --color-white: #fff;
 
-  background-image: linear-gradient(90deg, #e6f7fa 0%, #fff 100%);
+  background-image: linear-gradient(90deg, var(--color-lightblue) 0%, var(--color-white) 100%);
   color: #222;
   font-family: Verdana, sans-serif;
   margin: 15pt;
@@ -36,8 +38,17 @@ h2 {
   text-transform: uppercase;
 }
 
+.itineraries tr {
+  background-color: var(--color-white);
+}
+
 .itineraries tr:nth-child(even) {
-  background-color: rgb(245, 245, 245);
+  background-color: var(--color-lightblue);
+}
+
+.itineraries tr:hover {
+  background: #cdeff4;
+  transition: background-color 0.3s ease;
 }
 
 .itineraries td:not(.link) {
@@ -62,7 +73,8 @@ h2 {
 }
 
 .modify-date {
-  color: lightgray;
+  color: silver;
+  font-size: 9pt;
   text-align: right;
   width: 10%; /* 10% fits 'September 88, 8888' */
 }
