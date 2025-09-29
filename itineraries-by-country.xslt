@@ -10,6 +10,7 @@
         <title>Safari Itineraries by Country</title>
       </head>
       <body>
+        <img class="logo" src="./images/logo.png" />
         <h2>Safari itineraries by country</h2>
         <xsl:apply-templates />
       </body>
@@ -96,9 +97,7 @@
           disable-output-escaping="no"
         /><xsl:if test="contains($notesText, '[Lookbook]')">?type=lookbook</xsl:if></xsl:attribute>
         <xsl:attribute name="target">_blank</xsl:attribute>
-        <xsl:element name="img">
-          <xsl:attribute name="src">./images/icon-link.svg</xsl:attribute>
-        </xsl:element>
+        <img src="./images/icon-link.svg" />
         <span>Link</span>
       </xsl:element>
     </td>
