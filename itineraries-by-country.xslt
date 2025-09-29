@@ -28,14 +28,16 @@
 
   <xsl:template match="main/turbo-frame[@id='dashboard']">
     <xsl:for-each select="//table/tbody[contains(@data-url, '/proposals')]">
-      <table class="itineraries">
-        <caption>
-          <xsl:value-of select="normalize-space(tr[1]//button[@data-action='click->stream-toggler#toggle']/@title)" />
-        </caption>
-        <tbody>
-          <xsl:call-template name="itineraryRow" />
-        </tbody>
-      </table>
+      <xsl:if test="contains(string(tr[2]//table/tbody), '[Generic]')">
+        <table class="itineraries">
+          <caption>
+            <xsl:value-of select="normalize-space(tr[1]//button[@data-action='click->stream-toggler#toggle']/@title)" />
+          </caption>
+          <tbody>
+            <xsl:call-template name="itineraryRow" />
+          </tbody>
+        </table>
+      </xsl:if>
     </xsl:for-each>
   </xsl:template>
 
@@ -64,6 +66,7 @@
     </xsl:for-each>
   </xsl:template>
 
+  <!-- Generic text cell template. Used for date, name, notes, etc. -->
   <xsl:template name="textCell">
     <xsl:param name="cssClass" />
     <xsl:param name="text" />
@@ -80,6 +83,7 @@
     </xsl:element>
   </xsl:template>
 
+  <!-- Specific link cell template -->
   <xsl:template name="linkCell">
     <xsl:param name="notesText" />
     <!-- TODO: missing '&' and '<' chars -->
