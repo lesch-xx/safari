@@ -64,6 +64,7 @@
     </xsl:for-each>
   </xsl:template>
 
+  <!-- Generic text cell template. Used for date, name, notes, etc. -->
   <xsl:template name="textCell">
     <xsl:param name="cssClass" />
     <xsl:param name="text" />
@@ -80,6 +81,7 @@
     </xsl:element>
   </xsl:template>
 
+  <!-- Specific link cell template -->
   <xsl:template name="linkCell">
     <xsl:param name="notesText" />
     <!-- TODO: missing '&' and '<' chars -->
