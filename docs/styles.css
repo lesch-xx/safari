@@ -1,4 +1,6 @@
 body {
+  --color-blue: #004069;
+
   background-image: linear-gradient(90deg, #e6f7fa 0%, #fff 100%);
   color: #222;
   font-family: Verdana, sans-serif;
@@ -6,28 +8,32 @@ body {
 }
 
 h2 {
-  color: #004069;
+  color: var(--color-blue);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-weight: bold;
   letter-spacing: 2pt;
   margin-bottom: 15pt;
   text-align: center;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+  text-shadow: 1pt 1pt 4pt rgba(0, 0, 0, 0.25);
   text-transform: uppercase;
 }
 
 .itineraries {
-  border: 1px solid silver;
   border-collapse: collapse;
-  font-size: 10pt;
+  border-radius: 9pt;
+  box-shadow: 0 5pt 15pt rgba(0, 0, 0, 0.15);
+  font-size: 11pt;
+  overflow: hidden; /* For rounded corners */
   width: 100%;
 }
 
 .itineraries caption {
-  font-size: 11pt;
+  color: var(--color-blue);
+  font-size: 13pt;
   font-weight: bold;
-  margin: 10pt 0 2pt;
-  text-align: left;
+  margin: 15pt 0 5pt;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .itineraries tr:nth-child(even) {
