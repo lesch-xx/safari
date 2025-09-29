@@ -5,6 +5,7 @@
 
 1. Go to Safari Dashboard.
 > [!WARNING]
+>
 > Refresh the page if it has been open already.
 
 2. Open Web Developer Tools in Firefox (Inspect)
@@ -42,6 +43,7 @@ xsltproc --html --huge --output docs/index.html itineraries-by-country.xslt data
 4. Close Terminal
 
 > [!TIP]
+>
 > XPath functions reference available [here](https://developer.mozilla.org/en-US/docs/Web/XML/XPath/Reference/Functions).
 >
 > XSLT elements reference available [here](https://developer.mozilla.org/en-US/docs/Web/XML/XSLT/Reference/Element).
