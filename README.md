@@ -1,7 +1,14 @@
 # Transform Safari portal dashboard
 
 <details>
-  <summary>How to expand all itineraries</summary>
+  <summary>1. How to create local branch</summary>
+
+1. Make sure local `master` branch is up to date by pulling latest changes
+2. Create local branch off `master` with `update-YYYYMMDD` name
+</details>
+
+<details>
+  <summary>2. How to expand all itineraries</summary>
 
 1. Go to Safari Dashboard.
 > [!WARNING]
@@ -20,7 +27,7 @@ $x('//table/tbody//button[@data-action="click->stream-toggler#toggle"]').forEach
 </details>
 
 <details>
-  <summary>How to save web page</summary>
+  <summary>3. How to save web page</summary>
 
 1. Click right button to open context menu
 2. Select SingleFile - Save Page with SingleFile
@@ -29,7 +36,7 @@ $x('//table/tbody//button[@data-action="click->stream-toggler#toggle"]').forEach
 </details>
 
 <details>
-  <summary>How to transform saved page</summary>
+  <summary>4. How to transform saved page</summary>
 
 1. Open Terminal in project folder
 ```
@@ -51,7 +58,12 @@ xsltproc --html --huge --output docs/index.html itineraries-by-country.xslt data
 </details>
 
 <details>
-  <summary>How to update public page</summary>
+  <summary>5. How to update public page</summary>
 
-1. TODO
+1. Verify and commit page changes to local branch
+2. Push local branch to remote
+3. Create pull request into `master`
+4. Review changes and merge pull request
+5. Wait for website deployment to see changes online
+6. Switch to and update `master` branch locally by following instruction above
 </details>
