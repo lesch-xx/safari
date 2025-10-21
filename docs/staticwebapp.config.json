@@ -1,43 +1,28 @@
 {
-  "auth": {
-    "identityProviders": {
-      "azureActiveDirectory": {
-        "registration": {
-          "openIdIssuer": "https://login.microsoftonline.com/ab09e699-3536-44a8-8d3d-860f964ffc3a/v2.0",
-          "clientIdSettingName": "AZURE_CLIENT_ID",
-          "clientSecretSettingName": "AZURE_CLIENT_SECRET"
-        }
-      }
-    }
-  },
   "routes": [
     {
-      "route": "/login",
+      "allowedRoles": ["anonymous", "authenticated"],
       "rewrite": "/.auth/login/aad",
-      "allowedRoles": ["anonymous", "authenticated"]
+      "route": "/login",
     },
     {
-      "route": "/logout",
+      "allowedRoles": ["anonymous", "authenticated"],
       "redirect": "/.auth/logout",
-      "allowedRoles": ["anonymous", "authenticated"]
+      "route": "/logout",
     },
     {
       "route": "/.auth/login/github",
-      "statusCode": 404
+      "statusCode": 404,
     },
     {
-      "route": "/.auth/login/twitter",
-      "statusCode": 404
-    },
-    {
+      "allowedRoles": ["employee"],
       "route": "/*",
-      "allowedRoles": ["authenticated"]
-    }
+    },
   ],
   "responseOverrides": {
     "401": {
       "redirect": "/login",
-      "statusCode": 302
-    }
-  }
+      "statusCode": 302,
+    },
+  },
 }
