@@ -1,17 +1,27 @@
 {
   "responseOverrides": {
     "401": {
-      "redirect": "/.auth/login/aad",
+      "redirect": "/login",
       "statusCode": 302,
     },
   },
   "routes": [
     {
+      "allowedRoles": ["anonymous", "authenticated"],
+      "rewrite": "/.auth/login/aad",
+      "route": "/login",
+    },
+    {
+      "allowedRoles": ["anonymous", "authenticated"],
+      "redirect": "/.auth/logout",
+      "route": "/logout",
+    },
+    {
       "route": "/.auth/login/github",
       "statusCode": 404,
     },
     {
-      "allowedRoles": ["authenticated"],
+      "allowedRoles": ["employee"],
       "route": "/*",
     },
   ],
